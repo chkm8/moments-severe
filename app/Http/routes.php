@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(array('prefix' => 'api/v1'),function(){
+		Route::resource('moments', 'MomentsController'); //works on GET
+
+	// Route::post('/moments', 'MomentsController@store');
+ //  Route::get('/moments', 'MomentsController@index'); //works on GET
+
+});
+
