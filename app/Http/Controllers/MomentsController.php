@@ -30,7 +30,7 @@ class MomentsController extends Controller
     {
         //
        
-        $moments = Moments::all();
+        $moments = Moments::all()->reverse();
         $response = [
                 'result' => 'success',
                 'moments'   =>  $moments->toArray(),
@@ -58,7 +58,9 @@ class MomentsController extends Controller
     public function store(Request $request)
     {
         //
-        // $input = Request::all();
+        // $input = $request->all();
+        // print_r($input);
+        // die();
 
        
         // print_r($file->getPathName());
@@ -75,22 +77,22 @@ class MomentsController extends Controller
 
 
 
-        $file = $request->file('file');
+        // $file = $request->file('file');
 
-        // // die(print_r($file));
+        // // // die(print_r($file));
 
-        $temp = file_get_contents($file->getRealPath());
-        $file_name = date('Y_m_d_H_i_s',time()).'_'.$file->getClientOriginalName();
-        // print_r($temp."--".storage_path());
-        // ($this->config->item('MOBILE').'/'.$name_file
-        file_put_contents (storage_path().'/'.$file_name, $temp  , FILE_APPEND);
+        // $temp = file_get_contents($file->getRealPath());
+        // $file_name = date('Y_m_d_H_i_s',time()).'_'.$file->getClientOriginalName();
+        // // print_r($temp."--".storage_path());
+        // // ($this->config->item('MOBILE').'/'.$name_file
+        // file_put_contents (storage_path().'/'.$file_name, $temp  , FILE_APPEND);
 
         // die();
         
        
         $moments = new Moments;
         $moments->message    = $request->input('message');
-        $moments->image      = $file_name;//$request->input('image');
+        // $moments->image      = $file_name;//$request->input('image');
         $moments->address    = $request->input('address');
         $moments->latitude   = $request->input('latitude');
         $moments->longitude  = $request->input('longitude');
